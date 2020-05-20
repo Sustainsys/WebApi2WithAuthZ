@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using AuthZInOwin.Services;
+using Autofac;
 using Autofac.Integration.WebApi;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace AuthZInOwin
             var builder = new ContainerBuilder();
 
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+            builder.RegisterType<ValueService>();
 
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
